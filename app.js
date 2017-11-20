@@ -11,6 +11,9 @@ app.use(bodyParser.json())
 const { parksRouter } = require('./routes')
 app.use('/api/parks', parksRouter)
 
+const { ridesRouter } = require('./routes')
+app.use('/api/rides', ridesRouter)
+
 app.use((req, res, next) => {
   const status = 404
   const message = `Could not ${req.method} ${req.url}`
