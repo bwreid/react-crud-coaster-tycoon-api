@@ -8,9 +8,8 @@ if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'))
 app.disable('x-powered-by')
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-  res.json({ message: 'OK' })
-})
+const { ParksController } = require('./controllers')
+app.get('/parks', ParksController.index)
 
 const listener = () => `Listening on port ${port}!`
 app.listen(port, listener)

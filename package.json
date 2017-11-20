@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon app.js",
+    "knex": "knex",
     "start": "node app.js",
     "test": "NODE_ENV=test mocha"
   },
@@ -17,6 +18,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
-    "morgan": "^1.9.0"
+    "knex": "^0.14.1",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.0"
   }
 }
