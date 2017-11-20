@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "nodemon app.js",
     "knex": "knex",
+    "migrate": "knex migrate:latest && knex migrate:latest --env=test",
+    "seed": "knex seed:run && knex seed:run --env=test",
     "start": "node app.js",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test PORT=2999 mocha"
   },
   "devDependencies": {
     "chai": "^3.5.0",
