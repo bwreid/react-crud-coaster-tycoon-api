@@ -11,6 +11,19 @@ app.use(bodyParser.json())
 const { parksRouter } = require('./routes')
 app.use('/api/parks', parksRouter)
 
+app.use((req, res, next) => {
+  const status = 404
+  const message = `Could not ${req.method} ${req.url}`
+  next({ status, message })
+})
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  const status = err.status || 500
+  const message = err.message || `Something went wrong!`
+  res.status(status).json({ status, message })
+})
+
 const listener = () => `Listening on port ${port}!`
 app.listen(port, listener)
 
