@@ -52,13 +52,42 @@ describe('Park Resource', function () {
         expect(res.status).to.equal(200)
 
         const { park } = res.body
+
         delete park.created_at
         delete park.updated_at
+        park.rides.forEach(ride => {
+          delete ride.created_at
+          delete ride.updated_at
+        })
+
         expect(park).to.deep.equal({
           id: 1,
           name: 'Cedar Point',
           city: 'Sandusky',
-          state: 'Ohio'
+          state: 'Ohio',
+          rides: [
+            {
+              capacity: 24,
+              id: 1,
+              name: "Blue Streak",
+              park_id: 1,
+              popularity: 4
+            },
+            {
+              capacity: 20,
+              id: 2,
+              name: "Corkscrew",
+              park_id: 1,
+              popularity: 4
+            },
+            {
+              capacity: 36,
+              id: 3,
+              name: "Gemini",
+              park_id: 1,
+              popularity: 5
+            }
+          ]
         })
         done()
       })

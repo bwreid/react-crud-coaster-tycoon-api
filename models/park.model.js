@@ -10,6 +10,10 @@ class Park {
 
   static find (id) {
     return db('parks').where({ id }).first()
+      .then(async park => {
+        if (park) park.rides = await Ride.all().where({ park_id: park.id })
+        return park
+      })
   }
 
   static create (body) {
